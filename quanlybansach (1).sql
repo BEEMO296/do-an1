@@ -160,7 +160,7 @@ CREATE TABLE `sach` (
   `GiaNhap` float NOT NULL,
   `GiaBan` float NOT NULL,
   `GiaUuDai` float NOT NULL,
-  `SoLuon` int(11) NOT NULL,
+  `SoLuong` int(11) NOT NULL,
   `NgayCapNhat` date NOT NULL,
   `DinhDang` varchar(255) NOT NULL,
   `SoTrang` int(11) NOT NULL,
