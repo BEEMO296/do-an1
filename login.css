@@ -1,0 +1,46 @@
+.btn-dangky {
+    background-color: #e57373;
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+
+  .btn-dangky:hover {
+    background-color: #ef5350;
+  }
+
+
+  .btn-dangnhap {
+    background-color: #d32f2f;
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+
+  .btn-dangnhap:hover {
+    background-color: #b71c1c; 
+  }
+  body {
+    background-color: #f7f7f7;
+    padding-top: 50px;
+  }
+  .khung-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    background: #fff;
+    border-radius: 15px;
+    border: 2px solid #000;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .form-control {
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: 45px;
+    font-size: 16px;
+    text-align: center;
+  }
+  .form-group {
+    position: relative;
+  }
