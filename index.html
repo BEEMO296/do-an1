@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trang Chủ Bán Sách</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="C:\xampp\htdocs\project\image\logo.png" > SHARK BookStore
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="icon-bar" style="background:white;"></span>
+        <span class="icon-bar" style="background:white;"></span>
+        <span class="icon-bar" style="background:white;"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sách...">
+        </div>
+        <button type="submit" class="btn btn-default">Tìm</button>
+      </form>
+
+      <!--ĐÂY LÀ CHỖ CHỌN THỂ LOẠI-->
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thể loại <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Light Novel</a></li>
+            <li><a href="#">Manga</a></li>
+            <li><a href="#">Ngôn tình / Học đường</a></li>
+            <li><a href="#">Kinh dị</a></li>
+            <li><a href="#">Truyện thiếu nhi</a></li>
+            <li><a href="#">Phiêu lưu / Kỳ ảo</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Giỏ hàng</a></li>
+        <li><a href="#">Đăng nhập</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Banner -->
+<div class="banner"></div>
+
+<!-- Danh sách sách -->
+<div class="container">
+  <h3 class="text-center">Sách Mới</h3>
+  <div class="row">
+<!-- KÍCH THƯỚC ẢNH LÀ width 200 height 300 px-->
+    <div class="col-sm-6 col-md-3">
+      <div class="panel panel-default panel-book text-center">
+        <div class="panel-body">
+          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+1" class="img-responsive center-block" alt="Sách 1">
+          <h4>Tên Sách 1</h4>
+          <p class="text-danger">100.000đ</p>
+          <button class="btn btn-buy">Mua ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+      <div class="panel panel-default panel-book text-center">
+        <div class="panel-body">
+          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+2" class="img-responsive center-block" alt="Sách 2">
+          <h4>Tên Sách 2</h4>
+          <p class="text-danger">120.000đ</p>
+          <button class="btn btn-buy">Mua ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+      <div class="panel panel-default panel-book text-center">
+        <div class="panel-body">
+          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+3" class="img-responsive center-block" alt="Sách 3">
+          <h4>Tên Sách 3</h4>
+          <p class="text-danger">90.000đ</p>
+          <button class="btn btn-buy">Mua ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+      <div class="panel panel-default panel-book text-center">
+        <div class="panel-body">
+          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+4" class="img-responsive center-block" alt="Sách 4">
+          <h4>Tên Sách 4</h4>
+          <p class="text-danger">110.000đ</p>
+          <button class="btn btn-buy">Mua ngay</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="panel panel-default panel-book text-center">
+          <div class="panel-body">
+            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+5" class="img-responsive center-block" alt="Sách 5">
+            <h4>Tên Sách 5</h4>
+            <p class="text-danger">110.000đ</p>
+            <button class="btn btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6 col-md-3">
+        <div class="panel panel-default panel-book text-center">
+          <div class="panel-body">
+            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+6" class="img-responsive center-block" alt="Sách 6">
+            <h4>Tên Sách 6</h4>
+            <p class="text-danger">110.000đ</p>
+            <button class="btn btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3">
+        <div class="panel panel-default panel-book text-center">
+          <div class="panel-body">
+            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+7" class="img-responsive center-block" alt="Sách 7">
+            <h4>Tên Sách 7</h4>
+            <p class="text-danger">110.000đ</p>
+            <button class="btn btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6 col-md-3">
+        <div class="panel panel-default panel-book text-center">
+          <div class="panel-body">
+            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+8" class="img-responsive center-block" alt="Sách 8">
+            <h4>Tên Sách 8</h4>
+            <p class="text-danger">110.000đ</p>
+            <button class="btn btn-buy">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div>© 2025 SHARK BookStore - All Rights Reserved.</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

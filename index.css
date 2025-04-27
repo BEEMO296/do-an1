@@ -1,0 +1,209 @@
+body {
+    background-color: #f9f9f9;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .navbar {
+background-color: #d32f2f;
+border: none;
+border-radius: 0;
+min-height: 80px; 
+}
+
+.navbar-brand {
+display: flex;
+align-items: center;
+height: 80px; 
+gap: 10px;
+}
+
+.navbar-brand img {
+width: 60px;
+height: 60px;
+margin: 0;
+}
+
+.navbar-form {
+margin-top: 20px; 
+}
+.navbar-brand,
+.navbar-nav>li>a {
+color: #ffffff !important;
+}
+
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus {
+color: #f0f0f0 !important; 
+}
+
+
+  .navbar-form input {
+    border-radius: 20px;
+  }
+  .banner {
+    background: url('https://dummyimage.com/1200x300/d32f2f/ffffff&text=Banner+Khuyến+Mãi') no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    margin-bottom: 30px;
+  }
+  .banner img, .other-small-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  .panel-book {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+  .panel-book:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  .btn-buy {
+    background-color: #d32f2f;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 20px;
+    border: none;
+  }
+  .btn-buy:hover {
+    background-color: #b71c1c;
+    color: #fff;
+  }
+  footer {
+    background-color: #d32f2f;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+  }
+
+  .btn-buy {
+    background-color: #d32f2f;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    margin-right: 10px;
+  }
+  .btn-buy:hover {
+    background-color: #b71c1c;
+  }
+  .details-table {
+    margin-top: 30px;
+  }
+
+  .product-section {
+    padding: 30px 0;
+  }
+  /* ảnh trong chi tiết sp*/
+  .product-image {
+    position: sticky;
+    top: 80px;
+  }
+  .product-image img {
+    width: 100%;
+    max-height: 600px; 
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  /* */
+  .product-details {
+    padding-left: 30px;
+  }
+  .product-price {
+    color: #d32f2f;
+    font-size: 24px;
+    margin: 20px 0;
+  }
+
+  .dropdown-menu>li>a {
+    color: #333 !important;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .dropdown-menu>li>a:hover {
+    background-color: #f5f5f5;
+    color: #d32f2f !important;
+  }
+
+  /* css phần danh sách sản phẩm */
+  .product-list {
+    padding: 40px 0;
+  }
+  .category-title {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #d32f2f;
+    font-weight: bold;
+  }
+  .product-item {
+    margin-bottom: 30px;
+  }
+  .product-item img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #f9f9f9; 
+  }
+  
+  .card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  .card-body {
+    padding: 15px;
+    text-align: center;
+  }
+  .card-title {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  .card-price {
+    color: #d32f2f;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+
+
+  /*  Phần khung từng sản phẩm
+
+  
+  !!!!!KÍCH THƯỚC ẢNH MẶC ĐỊNH PHẢI ĐỂ 300x400
+
+
+  <div class="container product-list">
+  <h2 class="category-title">Danh Sách Sản Phẩm</h2>
+  <div class="row">
+    <!-- Sản phẩm 1 -->
+    <div class="col-md-3 col-sm-6 product-item">
+      <div class="card">
+        <img src="https://dummyimage.com/300x400/cccccc/000000&text=Sach+1" alt="Sách 1" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Tên Sản Phẩm 1</h5>
+          <p class="card-price">120.000 đ</p>
+          <a href="#" class="btn btn-buy">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+  
+  
+  */
