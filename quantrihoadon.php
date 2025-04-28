@@ -18,7 +18,7 @@
 
         <div class="sidebar">
             <div class="sidebar-logo">
-                <img src="logo.png" alt="Logo" class="img-responsive">
+                <img src="../image/logo.png" alt="Logo" class="img-responsive">
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="quantrisanpham.php">Sản phẩm</a></li>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="main-content">
-            <h3>KHÁCH HÀNG</h3>
+            <h3>HÓA ĐƠN</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -40,8 +40,10 @@
                             <th>địa chỉ giao hàng</th>
                             <th>SDT giao hàng</th>
                             <th>mã khách hàng</th>
-                            <th>mã phương thức vận chuyển</th>
-                            <th>mã phương thức thanh toán</th>
+                            <th>mã ptvc</th>
+                            <th>mã pttt</th>
+                            <th>trạng thái</th>
+                            <th colspan="2">hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +56,9 @@
                         <td>456</td>
                         <td>12</td>
                         <td>13</td>
+                        <td>giao thành công</td>
+                        <td><button class="btn btn-info btn-xs">Sửa</button></td>
+                                <td><button class="btn btn-danger btn-xs">Xóa</button></td>
                     </tbody>
                 </table>
             </div>
