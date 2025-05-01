@@ -18,7 +18,7 @@
 
         <div class="sidebar">
             <div class="sidebar-logo">
-              <img src="logo.png" alt="Logo" class="img-responsive">
+              <img src="../image/logo.png" alt="Logo" class="img-responsive">
             </div>
             <ul class="nav nav-pills nav-stacked">
             <li><a href="quantrisanpham.php">Sản phẩm</a></li>

@@ -44,7 +44,7 @@
                             <th>mã pttt</th>
                             <th>trạng thái</th>
                             <th colspan="2">hành động</th>
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody>
                         <td>112</td>
