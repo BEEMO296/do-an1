@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $pass = $_POST["password"];
 
-
+//check admin
     $sql_admin = "SELECT * FROM quan_tri WHERE (Email='$username' OR Tai_khoan='$username') AND Mat_khau='$pass' AND TrangThai=1";
     $result_admin = mysqli_query($conn, $sql_admin);
 
@@ -15,8 +15,8 @@ if (isset($_POST["submit"])) {
         header("Location: quantrisanpham.php");
         exit();
     } else {
-   
-        $sql_user = "SELECT * FROM khach_hang WHERE Email='$username' AND MatKhau='$pass' AND TrangThai=1";
+   //check khách
+        $sql_user = "SELECT * FROM khach_hang WHERE (Email='$username' OR TenDN='$username')AND MatKhau='$pass' AND TrangThai=1";
         $result_user = mysqli_query($conn, $sql_user);
 
         if (mysqli_num_rows($result_user) > 0) {
@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
