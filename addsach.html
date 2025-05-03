@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Sản Phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Thêm Sản Phẩm</h2>
+    <form action="xulyaddsach.php" method="POST" enctype="multipart/form-data">
+
+   
+        
+        <div class="form-group">
+            <label for="MaSach">Mã Sách:</label>
+            <input type="text" class="form-control" name="MaSach" required>
+        </div>
+
+        <div class="form-group">
+            <label for="TenSach">Tên Sách:</label>
+            <input type="text" class="form-control" name="TenSach" required>
+        </div>
+
+        <div class="form-group">
+            <label for="TacGia">Tác Giả:</label>
+            <input type="text" class="form-control" name="TacGia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="NhaXuatBan">Nhà Xuất Bản:</label>
+            <input type="text" class="form-control" name="NhaXuatBan" required>
+        </div>
+
+        <div class="form-group">
+            <label for="NhaCungCap">Nhà Cung Cấp:</label>
+            <input type="text" class="form-control" name="NhaCungCap" required>
+        </div>
+
+        <div class="form-group">
+            <label for="NamXuatBan">Năm Xuất Bản:</label>
+            <input type="number" class="form-control" name="NamXuatBan" required>
+        </div>
+
+        <div class="form-group">
+            <label for="NguoiDich">Người Dịch:</label>
+            <input type="text" class="form-control" name="NguoiDich">
+        </div>
+
+
+        
+        <div class="form-group">
+            <label for="SoTrang">Số Trang:</label>
+            <input type="number" class="form-control" name="SoTrang" required>
+        </div>
+
+       
+
+        <div class="form-group">
+            <label for="NgonNgu">Ngôn Ngữ:</label>
+            <input type="text" class="form-control" name="NgonNgu" required>
+        </div>
+
+        <div class="form-group">
+            <label for="HinhAnh">Hình Ảnh:</label>
+            <input type="file" class="form-control" name="HinhAnh" accept="image/*" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="DinhDang">Định Dạng:</label>
+            <select class="form-control" name="DinhDang" required>
+                <option value="Bìa mềm">Bìa mềm</option>
+                <option value="Bìa cứng">Bìa cứng</option>
+                <option value="Sách ảo">Sách ảo</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="GiaNhap">Giá Nhập:</label>
+            <input type="number" class="form-control" name="GiaNhap" required>
+        </div>
+
+        <div class="form-group">
+            <label for="GiaBan">Giá Bán:</label>
+            <input type="number" class="form-control" name="GiaBan" required>
+        </div>
+
+        <div class="form-group">
+            <label for="GiaUuDai">Giá Ưu Đãi:</label>
+            <input type="number" class="form-control" name="GiaUuDai">
+        </div>
+
+        <div class="form-group">
+            <label for="SoLuong">Số Lượng:</label>
+            <input type="number" class="form-control" name="SoLuong" required>
+        </div>
+
+        <div class="form-group">
+            <label for="MoTa">Mô Tả:</label>
+            <textarea class="form-control" name="MoTa" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="TrangThai">Trạng Thái:</label>
+            <select class="form-control" name="TrangThai" required>
+                <option value="1">Hoạt động</option>
+                <option value="0">Bị khóa</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="MaLoai">Loại Sách:</label>
+            <select class="form-control" name="MaLoai" required>
+                <option value="1">Light Novel</option>
+                <option value="2">Manga</option>
+                <option value="3">Ngôn tình/học đường</option>
+                <option value="4">Kinh dị</option>
+                <option value="5">Truyện thiếu nhi</option>
+                <option value="6">Phiêu lưu/kỳ ảo</option>
+                <option value="7">Sách nước ngoài</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Thêm Sản Phẩm</button>
+    </form>
+</div>
+
+</body>
+</html>

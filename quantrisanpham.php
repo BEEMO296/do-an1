@@ -1,99 +1,167 @@
 <?php
 include_once 'header-admin.php';
+require_once 'connect.php';
+
+
+if (isset($_GET['delete'])) {
+    $maSach = $_GET['delete'];
+
+
+    $sqlGetImage = "SELECT HinhAnh FROM sach WHERE MaSach = ?";
+    $stmtGetImage = $conn->prepare($sqlGetImage);
+    $stmtGetImage->bind_param("s", $maSach);
+    $stmtGetImage->execute();
+    $resultImage = $stmtGetImage->get_result();
+    
+    if ($resultImage->num_rows > 0) {
+        $row = $resultImage->fetch_assoc();
+        $imagePath = $row['HinhAnh'];  // Đường dẫn đến ảnh cần xóa
+
+        // Kiểm tra và xóa ảnh nếu tồn tại
+        if (file_exists($imagePath)) {
+            unlink($imagePath);  
+        }
+    }
+
+
+    $sqlDelete = "DELETE FROM sach WHERE MaSach = ?";
+    $stmtDelete = $conn->prepare($sqlDelete);
+    $stmtDelete->bind_param("s", $maSach);  
+    if ($stmtDelete->execute()) {
+        echo "Sách đã được xóa thành công!";
+        header("Location: quantrisanpham.php");  
+        exit();
+    } else {
+        echo "Lỗi khi xóa sách: " . $stmtDelete->error;
+    }
+
+    $stmtDelete->close();
+    $stmtGetImage->close();
+}
+
+
+$sql = "SELECT * FROM sach";
+$result = mysqli_query($conn, $sql);
 ?>
-            <div class="main-content">
-                <h3>SẢN PHẨM</h3>
-                <button class="btn btn-default">THÊM SẢN PHẨM</button>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>mã</th>
-                                <th>tên</th>
-                                <th>loại</th>
-                                <th>tác giả</th>
-                                <th>NXB</th>
-                                <th>năm xuất bản</th>
-                                <th>giá nhập</th>
-                                <th>giá bán</th>
-                                <th>giá ưu đãi</th>
-                                <th>số lượng</th>
-                                <th>ngày cập nhật</th>
-                                <th>định dạng</th>
-                                <th>số trang</th>
-                                <th>ngôn ngữ</th>
-                                <th>hình ảnh</th>
-                                <th>tóm tắt nội dung</th>
-                                <th>trạng thái</th>
-                                <th colspan="2">Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>8935250716291</td>
-                                <td>Book A</td>
-                                <td>Văn học</td>
-                                <td>Nguyễn A</td>
-                                <td>NXB A</td>
-                                <td>2024</td>
-                                <td>50k</td>
-                                <td>70k</td>
-                                <td>60k</td>
-                                <td>20</td>
-                                <td>01/01/2025</td>
-                                <td>bìa mềm</td>
-                                <td>300</td>
-                                <td>vi</td>
-                                <td><img src="../image/logo.png" ></td>
-                                <td class="summary-cell"
-                                title="シリーズ最新作『VI』の攻略情報を詰め込んだ公式ガイドブック!
 
-『アーマード・コア』シリーズ最新作『ARMORED CORE VI FIRES OF RUBICON』の攻略情報を詰め込んだ公式ガイドブック。
+<div class="main-content">
+    <h3>SẢN PHẨM</h3>
+    <a href="addsach.html"><button class="btn btn-default">THÊM SẢN PHẨM</button></a>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>mã</th>
+                    <th>tên</th>
+                    <th>loại</th>
+                    <th>tác giả</th>
+                    <th>Nhà cung cấp</th>
+                    <th>NXB</th>
+                    <th>năm xuất bản</th>
+                    <th>giá nhập</th>
+                    <th>giá bán</th>
+                    <th>giá ưu đãi</th>
+                    <th>số lượng</th>
+                    <th>ngày cập nhật</th>
+                    <th>định dạng</th>
+                    <th>số trang</th>
+                    <th>ngôn ngữ</th>
+                    <th>hình ảnh</th>
+                    <th>tóm tắt nội dung</th>
+                    <th>trạng thái</th>
+                    <th colspan="2">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <tr>
+                        <td><?php echo $row['MaSach']; ?></td>
+                        <td><?php echo $row['TenSach']; ?></td>
+                        <td> <?php
+                  switch ($row['MaLoai']) {
+                      case 1:
+                            echo 'Light Novel';
+                         break;
+                      case 2:
+                          echo 'Manga';
+                          break;
+                      case 3:
+                         echo 'Ngôn tình/Học đường';
+                            break;
+                      case 4:
+                         echo 'Kinh dị';
+                         break;
+                        case 5:
+                         echo 'Truyện thiếu nhi';
+                           break;
+                           case 6:
+                            echo 'Phiêu lưu/Kỳ ảo';
+                            break;
+                        default:
+                          echo 'Không rõ';
+                            break;
+                 }
+                 ?></td>
 
-ミッションの出現条件やルートの分岐条件をまとめた全体フローチャート、バトルログ、コンテナ、アーカイブの位置がわかる全体マップ、ミッションで待ち受ける強敵の攻略法などなど、攻略に欠かせない情報が満載。アリーナ攻略のアドバイス、パーツやエンブレムの入手方法、敵AC・MTの性能といった各種データも掲載しています。
 
-全ミッションのクリアを達成したい人はもちろんのこと、パーツをはじめとするさまざまな収集要素のコンプリートを目指す人に役立つ1冊となっています。
 
-<おもな収録内容>
+                        <td><?php echo $row['TacGia']; ?></td>
+                        <td><?php echo $row['NhaCungCap']; ?></td>
+                        <td><?php echo $row['NhaXuatBan']; ?></td>
+                        <td><?php echo $row['NamXuatBan']; ?></td>
+                        <td> <?php echo number_format($row['GiaNhap']) . 'đ'; ?></td>
+                        <td> <?php echo number_format($row['GiaBan']) . 'đ'; ?></td>
+                        <td> <?php 
+                         echo ($row['GiaUuDai'] !== null && $row['GiaUuDai'] != 0)
+                        ? number_format($row['GiaUuDai']) . 'đ'  : '';  ?> </td>
+                        <td><?php echo $row['SoLuong']; ?></td>
+                        <td><?php echo $row['NgayCapNhat']; ?></td>
+                        <td><?php echo $row['DinhDang']; ?></td>
+                        <td><?php echo $row['SoTrang']; ?></td>
+                        <td><?php echo $row['NgonNgu']; ?></td>
+                        <td><img src="<?php echo $row['HinhAnh']; ?>" ></td>
+                        <td class="summary-cell" title="<?php echo $row['MoTa']; ?>"><?php echo $row['MoTa']; ?></td>
 
-+ すべてのミッションをクリアするための攻略情報を詳細なマップとともに掲載
+                        <td>
+                       <?php
+                      switch ($row['TrangThai']) {
+                            case 0:
+                              echo 'Hết hàng';
+                               break;
+                            case 1:
+                               echo 'Còn hàng';
+                               break;
+                            case 2:
+                                 echo 'Ngừng kinh doanh';
+                                 break;
+                            default:
+                                   echo 'Không rõ';
+                               break;
+                      }?>
+                    </td>
 
-+ ガレージの仕組み、ACの各パラメータの役割を掲載
+                        
+                        <td><a href="suasach.php?MaSach=<?php echo $row['MaSach']; ?>" class="btn btn-info btn-xs">Sửa</a></td>
+                        <td>
+                     
+                            <a href="javascript:void(0);" onclick="confirmDelete('<?php echo $row['MaSach']; ?>')" class="btn btn-danger btn-xs">Xóa</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-+ 各アクション、武器の属性やスタッガーなど本作ならではのシステムも解説
+<script>
 
-+ アセンブルで重要となる各パーツの詳細な性能と入手方法を収録
+    function confirmDelete(maSach) {
+        if (confirm("Bạn có chắc chắn muốn xóa sách này không?")) {
+            window.location.href = "quantrisanpham.php?delete=" + maSach;
+        }
+    }
+</script>
 
-※本書の情報はAPP Ver.22時点の内容を記載しています。以降のアップデート等により情報に差異が発生することがあります。予めご了承ください。">
-                                シリーズ最新作『VI』の攻略情報を詰め込んだ公式ガイドブック!
-
-『アーマード・コア』シリーズ最新作『ARMORED CORE VI FIRES OF RUBICON』の攻略情報を詰め込んだ公式ガイドブック。
-
-ミッションの出現条件やルートの分岐条件をまとめた全体フローチャート、バトルログ、コンテナ、アーカイブの位置がわかる全体マップ、ミッションで待ち受ける強敵の攻略法などなど、攻略に欠かせない情報が満載。アリーナ攻略のアドバイス、パーツやエンブレムの入手方法、敵AC・MTの性能といった各種データも掲載しています。
-
-全ミッションのクリアを達成したい人はもちろんのこと、パーツをはじめとするさまざまな収集要素のコンプリートを目指す人に役立つ1冊となっています。
-
-<おもな収録内容>
-
-+ すべてのミッションをクリアするための攻略情報を詳細なマップとともに掲載
-
-+ ガレージの仕組み、ACの各パラメータの役割を掲載
-
-+ 各アクション、武器の属性やスタッガーなど本作ならではのシステムも解説
-
-+ アセンブルで重要となる各パーツの詳細な性能と入手方法を収録
-
-※本書の情報はAPP Ver.22時点の内容を記載しています。以降のアップデート等により情報に差異が発生することがあります。予めご了承ください。
-                                   
-                                </td>
-                                <td>Còn hàng</td>
-                                <td><button class="btn btn-info btn-xs">Sửa</button></td>
-                                <td><button class="btn btn-danger btn-xs">Xóa</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <?php
-   include_once 'footer-admin.php';
-   ?>
+<?php
+include_once 'footer-admin.php';
+?>
