@@ -1,6 +1,5 @@
 <?php
 include_once 'header-admin.php';
-require_once 'connect.php';
 
 
 if (isset($_GET['delete'])) {
@@ -55,6 +54,7 @@ $result = mysqli_query($conn, $sql);
                     <th>tên</th>
                     <th>loại</th>
                     <th>tác giả</th>
+                
                     <th>Nhà cung cấp</th>
                     <th>NXB</th>
                     <th>năm xuất bản</th>
@@ -106,6 +106,7 @@ $result = mysqli_query($conn, $sql);
 
 
                         <td><?php echo $row['TacGia']; ?></td>
+                   
                         <td><?php echo $row['NhaCungCap']; ?></td>
                         <td><?php echo $row['NhaXuatBan']; ?></td>
                         <td><?php echo $row['NamXuatBan']; ?></td>
@@ -141,7 +142,7 @@ $result = mysqli_query($conn, $sql);
                     </td>
 
                         
-                        <td><a href="suasach.php?MaSach=<?php echo $row['MaSach']; ?>" class="btn btn-info btn-xs">Sửa</a></td>
+                        <td><a href="updatesanpham.php?MaSach=<?php echo $row['MaSach']; ?>" class="btn btn-info btn-xs">Sửa</a></td>
                         <td>
                      
                             <a href="javascript:void(0);" onclick="confirmDelete('<?php echo $row['MaSach']; ?>')" class="btn btn-danger btn-xs">Xóa</a>
@@ -163,5 +164,5 @@ $result = mysqli_query($conn, $sql);
 </script>
 
 <?php
-include_once 'footer-admin.php';
+ include_once 'footer-admin.php';
 ?>

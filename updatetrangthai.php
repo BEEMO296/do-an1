@@ -40,7 +40,7 @@ $row = mysqli_fetch_assoc($result);
       </div>
 
       <button type="submit" class="btn btn-primary">Lưu</button>
-      <a href="danhsach-khachhang.php" class="btn btn-secondary">Hủy</a>
+      <a href="quantrikhachhang.php" class="btn btn-secondary">Hủy</a>
     </form>
   </div>
 </body>

@@ -22,7 +22,6 @@ if (isset($_POST['ho'], $_POST['ten'], $_POST['email'], $_POST['username'], $_PO
         exit;
     }
 
-    // kết hợp ngày tháng năm
     $ngaysinh = $nam . '-' . $thang . '-' . $ngay; 
 
     // check tránh trung tên đăng nhập
@@ -46,7 +45,7 @@ if (isset($_POST['ho'], $_POST['ten'], $_POST['email'], $_POST['username'], $_PO
     if (mysqli_query($conn, $sql)) {
         echo "<script>
         alert('Đăng ký thành công!');
-        window.location.href = 'dangnhap.php';
+        window.location.href = 'login.php';
     </script>";
     exit; 
     } else {
