@@ -1,5 +1,10 @@
 <?php
 include_once 'header-admin.php';
+require_once 'connect.php';
+
+$sql = "SELECT * FROM hoa_don";
+$result = mysqli_query($conn, $sql);
+
 ?>
         <div class="main-content">
             <h3>HÓA ĐƠN</h3>
@@ -21,22 +26,33 @@ include_once 'header-admin.php';
                         </tr>   
                     </thead>
                     <tbody>
-                        <td>112</td>
-                        <td>24/4/2025</td>
-                        <td>hoangtest@gmail.com</td>
-                        <td>Hoàng</td>
-                        <td>Hà Nội</td>
-                        <td>0123456789 </td>
-                        <td>456</td>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>giao thành công</td>
-                        <td><button class="btn btn-info btn-xs">Sửa</button></td>
-                                <td><button class="btn btn-danger btn-xs">Xóa</button></td>
-                    </tbody>
-                </table>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+         <tr>
+        <td><?= $row['MaHD'] ?></td>
+        <td><?= $row['NgayLap'] ?></td>
+        <td><?= $row['HoTenNguoiNhan'] ?></td>
+        <td><?= $row['DiaChiGiaoHang'] ?></td>
+        <td><?= $row['SDTGiaoHang'] ?></td>
+        <td><?= $row['MaKH'] ?></td>
+        <td><?= $row['MaPTVC'] ?></td>
+        <td><?= $row['MaPTTT'] ?></td>
+        <td>
+           <td>
+             <a href="suahoadon.php?id=<?= $row['MaKH'] ?>" class="btn btn-info btn-xs">Sửa</a>
+            </td>
+
+        <td>
+    <a href="xoahoadon.php?mahd=<?= $row['MaHD'] ?>" 
+    onclick="return confirm('Bạn có chắc chắn muốn xóa hóa đơn này?')" 
+    class="btn btn-danger btn-xs">Xóa</a>
+</td>
+
+    </tr>
+        <?php endwhile; ?>
+        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-   <?php
+            <?php
    include_once 'footer-admin.php';
    ?>
