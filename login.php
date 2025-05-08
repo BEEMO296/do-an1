@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
             $row = mysqli_fetch_assoc($result_user);
             $_SESSION['user'] = $row['HoTen'];
             $_SESSION['MaKH'] = $row['MaKH'];
-            header("Location: index.html"); 
+            header("Location: index.php"); 
             exit();
         } else {
             echo "<script>alert('Sai tài khoản hoặc mật khẩu');</script>";

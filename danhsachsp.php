@@ -1,105 +1,57 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trang Chủ Bán Sách</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/index.css">
-  <style>
+<?php
+include_once 'header.php';
 
-  </style>
-</head>
-<body>
-    <!--Navbar từ index-->
-    <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
-              <img src="C:\xampp\htdocs\project\image\logo.png" > SHARK BookStore
-            </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="icon-bar" style="background:white;"></span>
-              <span class="icon-bar" style="background:white;"></span>
-              <span class="icon-bar" style="background:white;"></span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse" id="navbar-collapse">
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Tìm kiếm sách...">
-              </div>
-              <button type="submit" class="btn btn-default">Tìm</button>
-            </form>
-      
-            <!--ĐÂY LÀ CHỖ CHỌN THỂ LOẠI-->
-            <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thể loại <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Light Novel</a></li>
-                  <li><a href="#">Manga</a></li>
-                  <li><a href="#">Ngôn tình / Học đường</a></li>
-                  <li><a href="#">Kinh dị</a></li>
-                  <li><a href="#">Truyện thiếu nhi</a></li>
-                  <li><a href="#">Phiêu lưu / Kỳ ảo</a></li>
-                </ul>
-              </li>
-            </ul>
-      
-      
-      
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Giỏ hàng</a></li>
-              <li><a href="login.php">Đăng nhập</a></li>
-            </ul>
+$MaLoai = isset($_GET['MaLoai']) ? mysqli_real_escape_string($conn, $_GET['MaLoai']) : '';
+
+if (!empty($MaLoai)) {
+    
+    $sqlLoai = "SELECT TenLoai FROM loai_sach WHERE MaLoai = '$MaLoai'";
+    $resultLoai = mysqli_query($conn, $sqlLoai);
+    $loai = mysqli_fetch_assoc($resultLoai);
+    $tenLoai = $loai['TenLoai'];
+    
+
+    $sql = "SELECT * FROM sach WHERE MaLoai = '$MaLoai'";
+    $resultSanPham = mysqli_query($conn, $sql);
+}
+?>
+
+<div class="container product-list">
+  <h2 class="category-title">Danh Sách Sản Phẩm - Thể Loại: <?php echo htmlspecialchars($tenLoai); ?></h2>
+  <div class="row">
+    <?php 
+    while ($row = mysqli_fetch_assoc($resultSanPham)) { 
+    ?>
+      <div class="product-item">
+        <div class="card">
+          <img src="<?php echo $row['HinhAnh']; ?>" alt="<?php echo htmlspecialchars($row['TenSach']); ?>" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo htmlspecialchars($row['TenSach']); ?></h5>
+            <p class="card-price">
+              <?php 
+              if (!empty($row['GiaUuDai']) && $row['GiaUuDai'] > 0) { 
+              ?>
+                <span class="original-price"><?php echo number_format($row['GiaBan'], 0, ',', '.'); ?> đ</span>
+                <span class="discount-price"><?php echo number_format($row['GiaUuDai'], 0, ',', '.'); ?> đ</span>
+              <?php 
+              } else { 
+              ?>
+                <span class="discount-price"><?php echo number_format($row['GiaBan'], 0, ',', '.'); ?> đ</span>
+                <span class="empty-price">&nbsp;</span>
+              <?php 
+              } 
+              ?>
+            </p>
+            <a href="#" class="btn btn-buy">Xem chi tiết</a>
           </div>
         </div>
-      </nav>
+      </div>
+    <?php 
+    } 
+    ?>
+  </div>
+</div>
 
-
-
-  
-      <div class="container product-list">
-        <h2 class="category-title">Danh Sách Sản Phẩm</h2>
-        <div class="row">
-          <!-- Sản phẩm -->
-          <div class="col-md-3 col-sm-6 product-item">
-            <div class="card">
-              <img src="https://dummyimage.com/300x400/cccccc/000000&text=Sach+1" alt="Sách 1" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">Tên Sản Phẩm 1</h5>
-                <p class="card-price">120.000 đ</p>
-                <a href="#" class="btn btn-buy">Xem chi tiết</a>
-              </div>
-            </div>
-          </div>
-      
-          <div class="col-md-3 col-sm-6 product-item">
-            <div class="card">
-              <img src="https://dummyimage.com/300x400/cccccc/000000&text=Sach+2" alt="Sách 2" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">Tên Sản Phẩm 2</h5>
-                <p class="card-price">135.000 đ</p>
-                <a href="#" class="btn btn-buy">Xem chi tiết</a>
-              </div>
-            </div>
-          </div>
-          
-        </div> 
-      </div> 
-      
-      <!-- Footer -->
-      <footer>
-        <div>© 2025 SHARK BookStore - All Rights Reserved.</div>
-      </footer>
-      
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-      >
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-</body>
-</html>
+<?php
+include_once 'footer.php';
+?>

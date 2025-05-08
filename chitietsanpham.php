@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chi Tiết Sản Phẩm</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+<!-- Navbar include từ index -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">
+        <img src="C:\xampp\htdocs\project\image\logo.png" > SHARK BookStore
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="icon-bar" style="background:white;"></span>
+        <span class="icon-bar" style="background:white;"></span>
+        <span class="icon-bar" style="background:white;"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sách...">
+        </div>
+        <button type="submit" class="btn btn-default">Tìm</button>
+      </form>
+
+   <!--ĐÂY LÀ CHỖ CHỌN THỂ LOẠI-->
+   <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thể loại <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="danhsachsp.html">Light Novel</a></li>
+                  <li><a href="danhsachsp.html">Manga</a></li>
+                  <li><a href="danhsachsp.html">Ngôn tình / Học đường</a></li>
+                  <li><a href="danhsachsp.html">Kinh dị</a></li>
+                  <li><a href="danhsachsp.html">Truyện thiếu nhi</a></li>
+                  <li><a href="danhsachsp.html">Phiêu lưu / Kỳ ảo</a></li>
+      </ul>
+    </li>
+  </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Giỏ hàng</a></li>
+        <li><a href="#">Đăng nhập</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Section -->
+<div class="container product-section">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="product-image">
+        <img src="https://dummyimage.com/400x600/cccccc/000000&text=Hinh+Sach" class="img-responsive" alt="Sách">
+      </div>
+    </div>
+    <div class="col-md-7 product-details">
+      <h2>86 - Eighty Six - Tập 13</h2>
+      <div class="product-price">130.500 đ <small><del>145.000 đ</del> -10%</small></div>
+      <div>
+        <button class="btn btn-buy">Thêm vào giỏ hàng</button>
+        <button class="btn btn-buy">Mua ngay</button>
+      </div>
+
+      <!-- Bảng thông tin chi tiết -->
+      <table class="table table-bordered details-table">
+        <tbody>
+          <tr>
+            <th>Mã hàng</th>
+            <td>8935250716291</td>
+          </tr>
+          <tr>
+            <th>Tên Nhà Cung Cấp</th>
+            <td>IPM</td>
+          </tr>
+          <tr>
+            <th>Tác giả</th>
+            <td>Asato Asato, Shirabii, I-IV</td>
+          </tr>
+          <tr>
+            <th>Người Dịch</th>
+            <td>Nhật Tuyến</td>
+          </tr>
+          <tr>
+            <th>NXB</th>
+            <td>Lao Động</td>
+          </tr>
+          <tr>
+            <th>Năm XB</th>
+            <td>2025</td>
+          </tr>
+          <tr>
+            <th>Ngôn ngữ</th>
+            <td>Tiếng Việt</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div>© 2025 SHARK BookStore - All Rights Reserved.</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

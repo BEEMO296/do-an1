@@ -1,68 +1,14 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trang Chủ Bán Sách</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/index.css">
-</head>
-<body>
+<?php 
+include_once 'header.php';
+?>
 
-<!-- Navbar -->
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">
-        <img src="..\image\logo.png" > SHARK BookStore
-      </a>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-        <span class="icon-bar" style="background:white;"></span>
-        <span class="icon-bar" style="background:white;"></span>
-        <span class="icon-bar" style="background:white;"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-collapse">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Tìm kiếm sách...">
-        </div>
-        <button type="submit" class="btn btn-default">Tìm</button>
-      </form>
-
-      <!--ĐÂY LÀ CHỖ CHỌN THỂ LOẠI-->
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thể loại <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="danhsachsp.html">Light Novel</a></li>
-            <li><a href="danhsachsp.html">Manga</a></li>
-            <li><a href="danhsachsp.html">Ngôn tình / Học đường</a></li>
-            <li><a href="danhsachsp.html">Kinh dị</a></li>
-            <li><a href="danhsachsp.html">Truyện thiếu nhi</a></li>
-            <li><a href="danhsachsp.html">Phiêu lưu / Kỳ ảo</a></li>
-          </ul>
-        </li>
-      </ul>
-
-
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="giohang.html">Giỏ hàng</a></li>
-        <li><a href="login.php">Đăng nhập</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Banner -->
 <div class="banner"></div>
 
-<!-- Danh sách sách -->
+
 <div class="container">
   <h3 class="text-center">Sách Mới</h3>
   <div class="row">
-<!-- KÍCH THƯỚC ẢNH LÀ width 200 height 300 px-->
+
     <div class="col-sm-6 col-md-3">
       <div class="panel panel-default panel-book text-center">
         <div class="panel-body">
@@ -156,12 +102,6 @@
 </div>
 
 <!-- Footer -->
-<footer>
-  <div>© 2025 SHARK BookStore - All Rights Reserved.</div>
-</footer>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+<?php 
+include_once 'footer.php';
+?>
