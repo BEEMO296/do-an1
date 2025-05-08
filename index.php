@@ -1,9 +1,8 @@
 <?php 
-include_once 'header.php';
+include_once 'header-admin.php';
 ?>
 
 <div class="banner"></div>
-
 
 <div class="container">
   <h3 class="text-center">Sách Mới</h3>
@@ -16,6 +15,7 @@ include_once 'header.php';
           <h4>Tên Sách 1</h4>
           <p class="text-danger">100.000đ</p>
           <button class="btn btn-buy">Mua ngay</button>
+          <a href="#" class="btn btn-default">Xem chi tiết</a>
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@ include_once 'header.php';
           <h4>Tên Sách 2</h4>
           <p class="text-danger">120.000đ</p>
           <button class="btn btn-buy">Mua ngay</button>
+          <a href="#" class="btn btn-default">Xem chi tiết</a>
         </div>
       </div>
     </div>
@@ -38,6 +39,7 @@ include_once 'header.php';
           <h4>Tên Sách 3</h4>
           <p class="text-danger">90.000đ</p>
           <button class="btn btn-buy">Mua ngay</button>
+          <a href="#" class="btn btn-default">Xem chi tiết</a>
         </div>
       </div>
     </div>
@@ -49,6 +51,7 @@ include_once 'header.php';
           <h4>Tên Sách 4</h4>
           <p class="text-danger">110.000đ</p>
           <button class="btn btn-buy">Mua ngay</button>
+          <a href="#" class="btn btn-default">Xem chi tiết</a>
         </div>
       </div>
     </div>
@@ -60,6 +63,7 @@ include_once 'header.php';
             <h4>Tên Sách 5</h4>
             <p class="text-danger">110.000đ</p>
             <button class="btn btn-buy">Mua ngay</button>
+            <a href="#" class="btn btn-default">Xem chi tiết</a>
           </div>
         </div>
       </div>
@@ -71,6 +75,7 @@ include_once 'header.php';
             <h4>Tên Sách 6</h4>
             <p class="text-danger">110.000đ</p>
             <button class="btn btn-buy">Mua ngay</button>
+            <a href="#" class="btn btn-default">Xem chi tiết</a>
           </div>
         </div>
       </div>
@@ -82,6 +87,7 @@ include_once 'header.php';
             <h4>Tên Sách 7</h4>
             <p class="text-danger">110.000đ</p>
             <button class="btn btn-buy">Mua ngay</button>
+            <a href="#" class="btn btn-default">Xem chi tiết</a>
           </div>
         </div>
       </div>
@@ -94,6 +100,7 @@ include_once 'header.php';
             <h4>Tên Sách 8</h4>
             <p class="text-danger">110.000đ</p>
             <button class="btn btn-buy">Mua ngay</button>
+            <a href="#" class="btn btn-default">Xem chi tiết</a>
           </div>
         </div>
       </div>
@@ -102,6 +109,8 @@ include_once 'header.php';
 </div>
 
 <!-- Footer -->
+<!-- nút xem chi tiết liên kết với chi tiết sản phẩm -->
+
 <?php 
-include_once 'footer.php';
+include_once 'footer-admin.php';
 ?>
