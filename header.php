@@ -1,5 +1,5 @@
 <?php
-require_once 'connect.php';
+require_once 'admin/connect.php';
 $queryLoai = "SELECT MaLoai, TenLoai FROM loai_sach WHERE TrangThai = 1";
 $resultLoai = mysqli_query($conn, $queryLoai);
 ?>

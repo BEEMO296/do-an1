@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "connect.php";
+require_once "admin/connect.php";
 
 if (isset($_POST["submit"])) {
     $username = $_POST["username"];
@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
 
     if (mysqli_num_rows($result_admin) > 0) {
         $_SESSION['admin'] = $username;
-        header("Location: quantrisanpham.php");
+        header("Location: admin/quantrisanpham.php");
         exit();
     } else {
    //check khách

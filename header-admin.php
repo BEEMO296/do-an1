@@ -8,7 +8,7 @@ require_once 'connect.php';
     <meta charset="UTF-8">
     <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/quantri.css">
+    <link rel="stylesheet" href="../../css/quantri.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@ require_once 'connect.php';
 
         <div class="sidebar">
             <div class="sidebar-logo">
-                <img src="../image/logo.png" alt="Logo" class="img-responsive">
+                <img src="../../image/logo.png" alt="Logo" class="img-responsive">
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="quantrisanpham.php">Sản phẩm</a></li>

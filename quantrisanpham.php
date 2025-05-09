@@ -120,7 +120,7 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $row['DinhDang']; ?></td>
                         <td><?php echo $row['SoTrang']; ?></td>
                         <td><?php echo $row['NgonNgu']; ?></td>
-                        <td><img src="<?php echo $row['HinhAnh']; ?>" ></td>
+                        <td><img src="<?php echo '../../image/' . basename($row['HinhAnh']); ?>"></td>
                         <td class="summary-cell" title="<?php echo $row['MoTa']; ?>"><?php echo $row['MoTa']; ?></td>
 
                         <td>

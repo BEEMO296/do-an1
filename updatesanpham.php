@@ -49,8 +49,8 @@ $stmt->close();
 
         <div class="form-group">
             <label>Ảnh hiện tại</label><br>
-            <img src="<?php echo $sach['HinhAnh']; ?>" style="width: 100px;"><br><br>
-            <label>Thay ảnh mới (nếu muốn)</label>
+            <img src="<?php echo '../../image/' . basename($sach['HinhAnh']);   ?>" style="width: 100px;"><br><br>
+            <label>Thay ảnh mới (nếu muốn)</label>  
             <input type="file" name="HinhAnh" class="form-control-file">
         </div>
 
