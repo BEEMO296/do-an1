@@ -45,7 +45,7 @@ if (isset($_POST['ho'], $_POST['ten'], $_POST['email'], $_POST['username'], $_PO
     if (mysqli_query($conn, $sql)) {
         echo "<script>
         alert('Đăng ký thành công!');
-        window.location.href = 'login.php';
+        window.location.href = '../login.php';
     </script>";
     exit; 
     } else {

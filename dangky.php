@@ -22,7 +22,7 @@
 <div class="khung-form">
     <h4>Tạo tài khoản mới</h4>
     <p>Nhanh chóng và dễ dàng.</p>
-    <form action="xulydangky.php" method="post">
+    <form action="admin/xulydangky.php" method="post">
     <div class="form-group">
         <div class="row">
             <div class="col-xs-6"><input type="text" name="ho" class="form-control" placeholder="HỌ"></div>

@@ -1,5 +1,5 @@
 <?php
-include_once 'header-admin.php';
+include_once '../admin/header-admin.php';
 
 
 if (isset($_GET['delete'])) {
@@ -45,7 +45,7 @@ $result = mysqli_query($conn, $sql);
 
 <div class="main-content">
     <h3>SẢN PHẨM</h3>
-    <a href="addsach.html"><button class="btn btn-default">THÊM SẢN PHẨM</button></a>
+    <a href="../addsach.html"><button class="btn btn-default">THÊM SẢN PHẨM</button></a>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>

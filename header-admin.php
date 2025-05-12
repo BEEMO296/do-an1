@@ -16,7 +16,7 @@ require_once 'connect.php';
     <div class="container-fluid content">
         <div class="logout">
             <img src="https://cdn-icons-png.flaticon.com/512/126/126467.png" alt="logout" width="20" height="20">
-          <a href="login.php">  <span>Đăng xuất</span></a>
+          <a href="../login.php">  <span>Đăng xuất</span></a>
         </div>
 
         <div class="sidebar">

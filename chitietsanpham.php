@@ -13,8 +13,8 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">
-        <img src="C:\xampp\htdocs\project\image\logo.png" > SHARK BookStore
+      <a class="navbar-brand" href="index.php">
+        <img src="../image/logo.png" > SHARK BookStore
       </a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
         <span class="icon-bar" style="background:white;"></span>

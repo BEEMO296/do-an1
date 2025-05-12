@@ -1,5 +1,5 @@
 <?php
-require_once 'connect.php';
+require_once 'admin/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Lấy dữ liệu từ form
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_hinh->execute();
             $stmt_hinh->close();
         
-            header("Location: quantrisanpham.php");
+            header("Location: admin/quantrisanpham.php");
         } else {
             unlink($targetFile); // Xóa ảnh nếu lỗi
             echo "Lỗi khi thêm sách: " . $stmt->error;
