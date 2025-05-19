@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 18, 2025 lúc 11:11 AM
+-- Thời gian đã tạo: Th5 19, 2025 lúc 03:49 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -20,6 +20,51 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quanlybansach`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `gio_hang`
+--
+
+CREATE TABLE `gio_hang` (
+  `MaGio` int(11) NOT NULL,
+  `MaKH` int(11) NOT NULL,
+  `MaSach` varchar(13) NOT NULL,
+  `NgayCapNhat` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `gio_hang`
+--
+
+INSERT INTO `gio_hang` (`MaGio`, `MaKH`, `MaSach`, `NgayCapNhat`) VALUES
+(1, 2, '8934974209072', '2025-05-19 08:47:21'),
+(2, 2, '8935250707961', '2025-05-19 08:47:21'),
+(3, 3, '0404202500', '2025-05-19 08:47:21'),
+(4, 6, '9781526628244', '2025-05-19 08:47:21');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `gio_hang_ct`
+--
+
+CREATE TABLE `gio_hang_ct` (
+  `MaKH` int(11) NOT NULL,
+  `MaSach` varchar(13) NOT NULL,
+  `SoLuong` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `gio_hang_ct`
+--
+
+INSERT INTO `gio_hang_ct` (`MaKH`, `MaSach`, `SoLuong`) VALUES
+(2, '8934974209072', 1),
+(2, '8935250707961', 2),
+(3, '0404202500', 1),
+(6, '9781526628244', 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +109,17 @@ CREATE TABLE `hoa_don` (
   `MaPTTT` int(11) NOT NULL,
   `TrangThai` tinyint(3) NOT NULL COMMENT '0=hủy\r\n1=đang giao\r\n2=giao thành công'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoa_don`
+--
+
+INSERT INTO `hoa_don` (`MaHD`, `NgayLap`, `HoTenNguoiNhan`, `DiaChiGiaoHang`, `SDTGiaoHang`, `MaKH`, `MaPTVC`, `MaPTTT`, `TrangThai`) VALUES
+(1, '2025-05-01', 'Trần Văn An', '123 Lê Lợi, Quận 1, TP.HCM', '0901234567', 2, 1, 1, 2),
+(2, '2025-05-03', 'Nguyễn Thị Bình', '456 Trần Hưng Đạo, Q5, TP.HCM', '0934567890', 3, 2, 2, 1),
+(3, '2025-05-05', 'Phạm Văn Cao', '789 Cách Mạng Tháng 8, Q10, TP.HCM', '0987654321', 4, 3, 3, 0),
+(4, '2025-05-07', 'Lê Thị Dung', '12 Nguyễn Huệ, TP. Huế', '0911222333', 2, 1, 4, 2),
+(5, '2025-05-10', 'Đặng Văn Quân', '99 Hai Bà Trưng, Hà Nội', '0977888999', 6, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -158,6 +214,16 @@ CREATE TABLE `pt_thanh_toan` (
   `TrangThai` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `pt_thanh_toan`
+--
+
+INSERT INTO `pt_thanh_toan` (`MaPTTT`, `TenPTTT`, `TrangThai`) VALUES
+(1, 'Thanh toán khi nhận hàng (COD)', 1),
+(2, 'Chuyển khoản ngân hàng', 1),
+(3, 'Thanh toán qua ví điện tử Momo', 1),
+(4, 'Thẻ tín dụng/ghi nợ', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -170,6 +236,16 @@ CREATE TABLE `pt_van_chuyen` (
   `Don_gia` float NOT NULL,
   `TrangThai` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `pt_van_chuyen`
+--
+
+INSERT INTO `pt_van_chuyen` (`MaPTVC`, `TenPTVC`, `Don_gia`, `TrangThai`) VALUES
+(1, 'Giao hàng tiêu chuẩn (3-5 ngày)', 20000, 1),
+(2, 'Giao hàng nhanh (1-2 ngày)', 35000, 1),
+(3, 'Giao hàng hỏa tốc (trong ngày)', 50000, 1),
+(4, 'Nhận tại cửa hàng', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +265,9 @@ CREATE TABLE `quan_tri` (
 --
 
 INSERT INTO `quan_tri` (`Tai_khoan`, `Email`, `Mat_khau`, `TrangThai`) VALUES
-('hoangadmin', 'test@gmail.com', '123', 1);
+('admin', 'admin01@gmail.com', '123456', 1),
+('hoangadmin', 'test@gmail.com', '123', 1),
+('mod02', 'mod02@gmail.com', '123456', 1);
 
 -- --------------------------------------------------------
 
@@ -236,6 +314,21 @@ INSERT INTO `sach` (`MaSach`, `MaLoai`, `TenSach`, `TacGia`, `NhaXuatBan`, `NhaC
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `gio_hang`
+--
+ALTER TABLE `gio_hang`
+  ADD PRIMARY KEY (`MaGio`),
+  ADD KEY `FK_GH_KH` (`MaKH`),
+  ADD KEY `FK_GH_SACH` (`MaSach`);
+
+--
+-- Chỉ mục cho bảng `gio_hang_ct`
+--
+ALTER TABLE `gio_hang_ct`
+  ADD PRIMARY KEY (`MaKH`,`MaSach`),
+  ADD KEY `FK_SACH_GH` (`MaSach`);
 
 --
 -- Chỉ mục cho bảng `hinhanh`
@@ -309,6 +402,12 @@ ALTER TABLE `sach`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `gio_hang`
+--
+ALTER TABLE `gio_hang`
+  MODIFY `MaGio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
@@ -329,6 +428,20 @@ ALTER TABLE `loai_sach`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `gio_hang`
+--
+ALTER TABLE `gio_hang`
+  ADD CONSTRAINT `FK_GH_KH` FOREIGN KEY (`MaKH`) REFERENCES `khach_hang` (`MaKH`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_GH_SACH` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `gio_hang_ct`
+--
+ALTER TABLE `gio_hang_ct`
+  ADD CONSTRAINT `FK_KH_GH` FOREIGN KEY (`MaKH`) REFERENCES `khach_hang` (`MaKH`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_SACH_GH` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `hinhanh`
