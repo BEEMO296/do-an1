@@ -14,7 +14,6 @@ $result = mysqli_query($conn, $sql);
                         <tr>
                             <th>mã hóa đơn</th>
                             <th>ngày lập</th>
-                            <th>email</th>
                             <th>họ tên người nhận</th>
                             <th>địa chỉ giao hàng</th>
                             <th>SDT giao hàng</th>
@@ -36,12 +35,13 @@ $result = mysqli_query($conn, $sql);
         <td><?= $row['MaKH'] ?></td>
         <td><?= $row['MaPTVC'] ?></td>
         <td><?= $row['MaPTTT'] ?></td>
-        <td>
+        <td><?= $row['TrangThai'] ?></td>
+     
            <td>
              <a href="suahoadon.php?id=<?= $row['MaKH'] ?>" class="btn btn-info btn-xs">Sửa</a>
-            </td>
+            
 
-        <td>
+        
     <a href="xoahoadon.php?mahd=<?= $row['MaHD'] ?>" 
     onclick="return confirm('Bạn có chắc chắn muốn xóa hóa đơn này?')" 
     class="btn btn-danger btn-xs">Xóa</a>
