@@ -1,8 +1,7 @@
 <?php
-require_once 'admin/connect.php';
+require_once 'admin/connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Lấy dữ liệu từ form
     $MaSach = $_POST['MaSach'];
     $TenSach = $_POST['TenSach'];
     $TacGia = $_POST['TacGia'];
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $TrangThai = $_POST['TrangThai'];
     $MaLoai = $_POST['MaLoai'];
 
-    // Xử lý ảnh
+  
     $targetdir = "../image/";
     $fileName = basename($_FILES["HinhAnh"]["name"]);
     $targetFile = $targetdir . time() . "_" . $fileName;
@@ -33,49 +32,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (move_uploaded_file($_FILES["HinhAnh"]["tmp_name"], $targetFile)) {
-        // Thêm vào bảng sách
+  
         $sql = "INSERT INTO sach (
             MaSach, TenSach, TacGia, NhaXuatBan, NhaCungCap, NamXuatBan,
             NguoiDich, SoTrang, NgonNgu, HinhAnh, DinhDang,
             GiaNhap, GiaBan, GiaUuDai, SoLuong, MoTa, TrangThai, MaLoai
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $stmt = $conn->prepare($sql);
+        $stmt = mysqli_prepare($conn, $sql);
+
         if (!$stmt) {
-            unlink($targetFile); // Xóa ảnh nếu lỗi
-            die("Lỗi chuẩn bị câu lệnh SQL: " . $conn->error);
+            unlink($targetFile); 
+            die("Lỗi chuẩn bị câu lệnh SQL: " . mysqli_error($conn));
         }
 
+        mysqli_stmt_bind_param($stmt, "sssssisissssddisii", 
+            $MaSach, $TenSach, $TacGia, $NhaXuatBan, $NhaCungCap, $NamXuatBan,
+            $NguoiDich, $SoTrang, $NgonNgu, $targetFile, $DinhDang,
+            $GiaNhap, $GiaBan, $GiaUuDai, $SoLuong, $MoTa, $TrangThai, $MaLoai
+        );
 
-        //debug
-        $stmt->bind_param("sssssisissssddisii", 
-    $MaSach, $TenSach, $TacGia, $NhaXuatBan, $NhaCungCap, $NamXuatBan,
-    $NguoiDich, $SoTrang, $NgonNgu, $targetFile, $DinhDang,
-    $GiaNhap, $GiaBan, $GiaUuDai, $SoLuong, $MoTa, $TrangThai, $MaLoai
-);
+        if (mysqli_stmt_execute($stmt)) {
+            
+            $sql_hinh = "INSERT INTO hinhanh (MaSach, DuongDanHinh) VALUES (?, ?)";
+            $stmt_hinh = mysqli_prepare($conn, $sql_hinh);
+            mysqli_stmt_bind_param($stmt_hinh, "ss", $MaSach, $targetFile);
+            mysqli_stmt_execute($stmt_hinh);
+            mysqli_stmt_close($stmt_hinh);
 
-
-    
-        
-
-        if ($stmt->execute()) {
-            // Thêm vào bảng hinh_anh
-            $stmt_hinh = $conn->prepare("INSERT INTO hinhanh (MaSach, DuongDanHinh) VALUES (?, ?)");
-            $stmt_hinh->bind_param("ss", $MaSach, $targetFile);
-            $stmt_hinh->execute();
-            $stmt_hinh->close();
-        
             header("Location: admin/quantrisanpham.php");
+            exit();
         } else {
-            unlink($targetFile); // Xóa ảnh nếu lỗi
-            echo "Lỗi khi thêm sách: " . $stmt->error;
+            unlink($targetFile); 
+            echo "Lỗi khi thêm sách: " . mysqli_stmt_error($stmt);
         }
 
-        $stmt->close();
+        mysqli_stmt_close($stmt);
     } else {
         echo "Không thể upload hình ảnh.";
     }
 
-    $conn->close();
+    mysqli_close($conn);
 }
 ?>

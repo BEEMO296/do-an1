@@ -2,7 +2,7 @@
 include_once 'header.php';
 ?>
 
-<div class="banner"></div>
+<div class="banner" style="background-image: url('https://newshop.vn/public/uploads/news/nhung-cuon-sach-light-novel-hay-2020-min.jpg'); background-size: cover; background-position: center; height: 300px;"></div>
 
 
 <div class="container">

@@ -44,3 +44,7 @@
   .form-group {
     position: relative;
   }
+ .btn a {
+  color: white;
+  text-decoration: none;
+}

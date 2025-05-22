@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $pass = $_POST["password"];
 
-//check admin
+    // Check admin
     $sql_admin = "SELECT * FROM quan_tri WHERE (Email='$username' OR Tai_khoan='$username') AND Mat_khau='$pass' AND TrangThai=1";
     $result_admin = mysqli_query($conn, $sql_admin);
 
@@ -15,21 +15,23 @@ if (isset($_POST["submit"])) {
         header("Location: admin/quantrisanpham.php");
         exit();
     } else {
-   //check khách
-        $sql_user = "SELECT * FROM khach_hang WHERE (Email='$username' OR TenDN='$username')AND MatKhau='$pass' AND TrangThai=1";
+        // Check khách hàng
+        $sql_user = "SELECT * FROM khach_hang WHERE (Email='$username' OR TenDN='$username') AND MatKhau='$pass' AND TrangThai=1";
         $result_user = mysqli_query($conn, $sql_user);
 
         if (mysqli_num_rows($result_user) > 0) {
             $row = mysqli_fetch_assoc($result_user);
-            $_SESSION['user'] = $row['HoTen'];
-            $_SESSION['MaKH'] = $row['MaKH'];
-            header("Location: index.php"); 
+            $_SESSION['user'] = $row['HoTen'];      
+            $_SESSION['HoTen'] = $row['HoTen'];     
+            $_SESSION['MaKH'] = $row['MaKH'];       
+            header("Location: index.php");
             exit();
         } else {
             echo "<script>alert('Sai tài khoản hoặc mật khẩu');</script>";
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +59,10 @@ if (isset($_POST["submit"])) {
     <div class="text-center">
       <button type="button" class="btn btn-dangky"><a href="dangky.php">đăng ký</a></button>
       <button type="submit" name="submit" class="btn btn-dangnhap">đăng nhập</button>
+
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary"><a href="index.php">Quay lại Trang Chủ</a></button>
     </div>
   </form>
 </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'admin/connect.php';
 $queryLoai = "SELECT MaLoai, TenLoai FROM loai_sach WHERE TrangThai = 1";
 $resultLoai = mysqli_query($conn, $queryLoai);
@@ -53,10 +54,16 @@ $resultLoai = mysqli_query($conn, $queryLoai);
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="giohang.html">Giỏ hàng</a></li>
-          <li><a href="login.php">Đăng nhập</a></li>
-        </ul>
+    <ul class="nav navbar-nav navbar-right">
+  <li><a href="giohang.html">Giỏ hàng</a></li>
+  <?php if (isset($_SESSION['MaKH'])): ?>
+    <li><a href="hosonguoidung.php">Xin chào, <?php echo htmlspecialchars($_SESSION['HoTen']); ?></a></li>
+    <li><a href="logout.php">Đăng xuất</a></li>
+  <?php else: ?>
+    <li><a href="login.php">Đăng nhập</a></li>
+  <?php endif; ?>
+</ul>
+
       </div>
     </div>
   </nav>

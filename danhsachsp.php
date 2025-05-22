@@ -42,7 +42,8 @@ if (!empty($MaLoai)) {
               } 
               ?>
             </p>
-            <a href="#" class="btn btn-buy">Xem chi tiết</a>
+            <a href="chitietsanpham.php?id=<?php echo $row['MaSach']; ?>" class="btn btn-buy">Xem chi tiết</a>
+
           </div>
         </div>
       </div>
