@@ -3,7 +3,7 @@ require_once("admin/connect.php");
 include("header.php");
 ?>
 
-<div class="banner"></div>
+<div class="banner" style="background-image: url('https://www.shutterstock.com/shutterstock/photos/2591862727/display_1500/stock-vector-bookshelf-with-classic-novels-for-reading-book-spines-covers-standing-upright-in-row-fiction-2591862727.jpg'); background-size: cover; background-position: center; height: 300px;"></div>
 
 <div class="container product-list">
     <h2 class="category-title">Danh sách sản phẩm</h2>
