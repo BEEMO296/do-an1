@@ -1,107 +1,51 @@
-<?php 
-include_once 'header.php';
+<?php
+require_once("admin/connect.php");
+include("header.php");
 ?>
 
-<div class="banner" style="background-image: url('https://newshop.vn/public/uploads/news/nhung-cuon-sach-light-novel-hay-2020-min.jpg'); background-size: cover; background-position: center; height: 300px;"></div>
+<div class="banner"></div>
 
+<div class="container product-list">
+    <h2 class="category-title">Danh sách sản phẩm</h2>
+    <div class="row">
+        <?php
+        $sql = "SELECT MaSach, TenSach, GiaBan, GiaUuDai, HinhAnh FROM sach WHERE TrangThai = 1 LIMIT 20";
+        $result = mysqli_query($conn, $sql);
 
-<div class="container">
-  <h3 class="text-center">Sách Mới</h3>
-  <div class="row">
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $giaBan = number_format($row["GiaBan"], 0, ',', '.');
+                $giaUuDai = $row["GiaUuDai"] ? number_format($row["GiaUuDai"], 0, ',', '.') : null;
+                $hinhAnh = htmlspecialchars($row["HinhAnh"]);
+                $tenSach = htmlspecialchars($row["TenSach"]);
+                $maSach = urlencode(trim($row["MaSach"]));
+                ?>
+                <div class="product-item">
+                    <div class="card">
+                        <img src="<?= $hinhAnh ?>" alt="<?= $tenSach ?>">
+                        <div class="card-body">
+                            <div class="card-title"><?= $tenSach ?></div>
+                            <div class="card-price">
+                                <?php if ($row["GiaUuDai"] && $row["GiaUuDai"] < $row["GiaBan"]) : ?>
+                                    <span class="original-price"><?= $giaBan ?>₫</span>
+                                    <span class="discount-price"><?= $giaUuDai ?>₫</span>
+                                <?php else: ?>
+                                    <span class="discount-price"><?= $giaBan ?>₫</span>
+                                <?php endif; ?>
+                            </div>
+                            <a href="chitietsanpham.php?id=<?= $maSach ?>" class="btn-buy">Mua</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            echo "<p>Không có sản phẩm nào.</p>";
+        }
 
-    <div class="col-sm-6 col-md-3">
-      <div class="panel panel-default panel-book text-center">
-        <div class="panel-body">
-          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+1" class="img-responsive center-block" alt="Sách 1">
-          <h4>Tên Sách 1</h4>
-          <p class="text-danger">100.000đ</p>
-          <button class="btn btn-buy">Mua ngay</button>
-        </div>
-      </div>
+        mysqli_close($conn);
+        ?>
     </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="panel panel-default panel-book text-center">
-        <div class="panel-body">
-          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+2" class="img-responsive center-block" alt="Sách 2">
-          <h4>Tên Sách 2</h4>
-          <p class="text-danger">120.000đ</p>
-          <button class="btn btn-buy">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="panel panel-default panel-book text-center">
-        <div class="panel-body">
-          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+3" class="img-responsive center-block" alt="Sách 3">
-          <h4>Tên Sách 3</h4>
-          <p class="text-danger">90.000đ</p>
-          <button class="btn btn-buy">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="panel panel-default panel-book text-center">
-        <div class="panel-body">
-          <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+4" class="img-responsive center-block" alt="Sách 4">
-          <h4>Tên Sách 4</h4>
-          <p class="text-danger">110.000đ</p>
-          <button class="btn btn-buy">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-        <div class="panel panel-default panel-book text-center">
-          <div class="panel-body">
-            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+5" class="img-responsive center-block" alt="Sách 5">
-            <h4>Tên Sách 5</h4>
-            <p class="text-danger">110.000đ</p>
-            <button class="btn btn-buy">Mua ngay</button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-sm-6 col-md-3">
-        <div class="panel panel-default panel-book text-center">
-          <div class="panel-body">
-            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+6" class="img-responsive center-block" alt="Sách 6">
-            <h4>Tên Sách 6</h4>
-            <p class="text-danger">110.000đ</p>
-            <button class="btn btn-buy">Mua ngay</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-3">
-        <div class="panel panel-default panel-book text-center">
-          <div class="panel-body">
-            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+7" class="img-responsive center-block" alt="Sách 7">
-            <h4>Tên Sách 7</h4>
-            <p class="text-danger">110.000đ</p>
-            <button class="btn btn-buy">Mua ngay</button>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-sm-6 col-md-3">
-        <div class="panel panel-default panel-book text-center">
-          <div class="panel-body">
-            <img src="https://dummyimage.com/200x300/cccccc/000000&text=Sách+8" class="img-responsive center-block" alt="Sách 8">
-            <h4>Tên Sách 8</h4>
-            <p class="text-danger">110.000đ</p>
-            <button class="btn btn-buy">Mua ngay</button>
-          </div>
-        </div>
-      </div>
-
-  </div>
 </div>
 
-<!-- Footer -->
-<?php 
-include_once 'footer.php';
-?>
+<?php include("footer.php"); ?>
