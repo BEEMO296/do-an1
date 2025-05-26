@@ -3,7 +3,7 @@ session_start();
 require_once 'admin/connect.php';
 include 'header.php';
 
-// --- Load giỏ hàng từ DB vào session nếu user đã đăng nhập và session rỗng ---
+
 if (isset($_SESSION['MaKH']) && (empty($_SESSION['cart']) || !isset($_SESSION['cart']))) {
     $MaKH = (int)$_SESSION['MaKH'];
     $res = $conn->query("SELECT MaGio FROM gio_hang WHERE MaKH = $MaKH");
@@ -19,48 +19,65 @@ if (isset($_SESSION['MaKH']) && (empty($_SESSION['cart']) || !isset($_SESSION['c
     }
 }
 
-// --- Xử lý POST tăng giảm số lượng ---
+//xử lý tăng giảm
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['product_id'] ?? '';
-    if ($id !== '') {
-        if (isset($_POST['increase'])) {
-            $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
-        } elseif (isset($_POST['decrease'])) {
-            if (isset($_SESSION['cart'][$id])) {
-                $_SESSION['cart'][$id]--;
-                if ($_SESSION['cart'][$id] <= 0) {
-                    unset($_SESSION['cart'][$id]);
-                }
-            }
-        } elseif (isset($_POST['remove'])) {
-            unset($_SESSION['cart'][$id]);
-        } elseif (isset($_POST['save_cart'])) {
-            if (!isset($_SESSION['MaKH'])) {
-                echo "<div class='alert alert-warning'>Bạn cần đăng nhập để lưu giỏ hàng.</div>";
-            } else {
-                $MaKH = (int)$_SESSION['MaKH'];
-                $res = $conn->query("SELECT MaGio FROM gio_hang WHERE MaKH = $MaKH");
-                if ($res && $res->num_rows > 0) {
-                    $row = $res->fetch_assoc();
-                    $MaGio = (int)$row['MaGio'];
-                    $conn->query("DELETE FROM gio_hang_ct WHERE MaGio = $MaGio");
-                } else {
-                    $conn->query("INSERT INTO gio_hang (MaKH) VALUES ($MaKH)");
-                    $MaGio = $conn->insert_id;
-                }
 
-                foreach ($_SESSION['cart'] as $MaSach => $SoLuong) {
-                    $MaSachEsc = $conn->real_escape_string($MaSach);
-                    $SoLuongInt = (int)$SoLuong;
-                    $conn->query("INSERT INTO gio_hang_ct (MaGio, MaSach, SoLuong) VALUES ($MaGio, '$MaSachEsc', $SoLuongInt)");
-                }
-                echo "<div class='alert alert-success'>Đã lưu giỏ hàng thành công.</div>";
+    // Tăng
+    if (isset($_POST['increase']) && $id !== '') {
+        $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
+    }
+
+    // Giảm
+    elseif (isset($_POST['decrease']) && $id !== '') {
+        if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id]--;
+            if ($_SESSION['cart'][$id] <= 0) {
+                unset($_SESSION['cart'][$id]);
             }
         }
     }
+
+   
+    elseif (isset($_POST['remove']) && $id !== '') {
+        unset($_SESSION['cart'][$id]);
+
+        
+        if (empty($_SESSION['cart']) && isset($_SESSION['MaKH'])) {
+            header("Location: luu-giohang.php");
+            exit;
+        }
+    }
+
+    elseif (isset($_POST['save_cart'])) {
+        if (!isset($_SESSION['MaKH'])) {
+            echo "<div class='alert alert-warning'>Bạn cần đăng nhập để lưu giỏ hàng.</div>";
+        } else {
+            $MaKH = (int)$_SESSION['MaKH'];
+            $res = $conn->query("SELECT MaGio FROM gio_hang WHERE MaKH = $MaKH");
+            if ($res && $res->num_rows > 0) {
+                $row = $res->fetch_assoc();
+                $MaGio = (int)$row['MaGio'];
+                $conn->query("DELETE FROM gio_hang_ct WHERE MaGio = $MaGio");
+            } else {
+                $conn->query("INSERT INTO gio_hang (MaKH) VALUES ($MaKH)");
+                $MaGio = $conn->insert_id;
+            }
+
+            foreach ($_SESSION['cart'] as $MaSach => $SoLuong) {
+                $MaSachEsc = (int)$MaSach;
+                $SoLuongInt = (int)$SoLuong;
+                $conn->query("INSERT INTO gio_hang_ct (MaGio, MaSach, SoLuong) VALUES ($MaGio, $MaSachEsc, $SoLuongInt)");
+            }
+            echo "<div class='alert alert-success'>Đã lưu giỏ hàng thành công.</div>";
+        }
+    }
+
+    // Sau mỗi hành động đều quay lại trang chính
     header("Location: giohang.php");
     exit;
 }
+
 ?>
 
 <div class="container product-list">
