@@ -8,7 +8,7 @@ $where = [];
 $params = [];
 $types = '';
 
-if ($filterTrangThai === '0' || $filterTrangThai === '1') {
+if ($filterTrangThai === '0' || $filterTrangThai === '1' ||  $filterTrangThai === '2') {
     $where[] = "TrangThai = ?";
     $params[] = $filterTrangThai;
     $types .= 'i';
@@ -54,6 +54,7 @@ $result = mysqli_stmt_get_result($stmt);
             <option value="">-- Lọc trạng thái --</option>
             <option value="1" <?php if ($filterTrangThai === '1') echo 'selected'; ?>>Còn hàng</option>
             <option value="0" <?php if ($filterTrangThai === '0') echo 'selected'; ?>>Hết hàng</option>
+            <option value="2" <?php if ($filterTrangThai === '2') echo 'selected'; ?>>Ngừng kinh doanh</option>
         </select>
         <button type="submit" class="btn btn-primary">Lọc & Tìm</button>
         <a href="quantrisanpham.php" class="btn btn-default">Xóa lọc</a>
