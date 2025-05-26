@@ -1,7 +1,7 @@
 <?php
 include_once '../admin/header-admin.php';
 
-// Đường dẫn thư mục chứa ảnh (cập nhật cho đúng với bạn)
+
 $imageFolder = '../../image/';
 
 // XÓA
