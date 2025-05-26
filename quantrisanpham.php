@@ -1,23 +1,52 @@
 <?php
 include_once '../admin/header-admin.php';
 
+// Đường dẫn thư mục chứa ảnh (cập nhật cho đúng với bạn)
+$imageFolder = '../../image/';
+
+// XÓA
+if (isset($_GET['delete'])) {
+    $maSach = intval($_GET['delete']); 
+    
+    if ($maSach > 0) {
+      
+        $sqlGetImage = "SELECT HinhAnh FROM sach WHERE MaSach = $maSach";
+        $resImage = mysqli_query($conn, $sqlGetImage);
+        if ($resImage && mysqli_num_rows($resImage) > 0) {
+            $row = mysqli_fetch_assoc($resImage);
+            $imageName = $row['HinhAnh'];
+            $imagePath = $imageFolder . basename($imageName);
+            if (file_exists($imagePath)) {
+                unlink($imagePath); 
+            }
+        }
+        
+       
+        $sqlDelete = "DELETE FROM sach WHERE MaSach = $maSach";
+        if (mysqli_query($conn, $sqlDelete)) {
+          
+            header("Location: quantrisanpham.php");
+            exit();
+        } else {
+            echo "Lỗi khi xóa sách: " . mysqli_error($conn);
+        }
+    }
+}
+
+// LỌC
 $filterTrangThai = isset($_GET['trangthai']) ? $_GET['trangthai'] : '';
 $searchTen = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 $where = [];
-$params = [];
-$types = '';
 
-if ($filterTrangThai === '0' || $filterTrangThai === '1' ||  $filterTrangThai === '2') {
-    $where[] = "TrangThai = ?";
-    $params[] = $filterTrangThai;
-    $types .= 'i';
+if ($filterTrangThai === '0' || $filterTrangThai === '1' || $filterTrangThai === '2') {
+    $filterTrangThaiInt = intval($filterTrangThai);
+    $where[] = "TrangThai = $filterTrangThaiInt";
 }
 
 if ($searchTen !== '') {
-    $where[] = "TenSach LIKE ?";
-    $params[] = "%" . $searchTen . "%";
-    $types .= 's';
+    $searchTenEsc = mysqli_real_escape_string($conn, $searchTen);
+    $where[] = "TenSach LIKE '%$searchTenEsc%'";
 }
 
 $sql = "SELECT * FROM sach";
@@ -25,23 +54,12 @@ if (count($where) > 0) {
     $sql .= " WHERE " . implode(" AND ", $where);
 }
 
-$stmt = mysqli_prepare($conn, $sql);
-if ($stmt === false) {
+$result = mysqli_query($conn, $sql);
+if ($result === false) {
     die('Lỗi câu truy vấn: ' . mysqli_error($conn));
 }
 
-if (count($params) > 0) {
-    $bind_names[] = $types;
-    for ($i = 0; $i < count($params); $i++) {
-        $bind_name = 'bind' . $i;
-        $$bind_name = $params[$i];
-        $bind_names[] = &$$bind_name;
-    }
-    call_user_func_array([$stmt, 'bind_param'], $bind_names);
-}
 
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
 ?>
 
 <div class="main-content">
