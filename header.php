@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'admin/connect.php';
 $queryLoai = "SELECT MaLoai, TenLoai FROM loai_sach WHERE TrangThai = 1";
 $resultLoai = mysqli_query($conn, $queryLoai);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -30,12 +33,13 @@ $resultLoai = mysqli_query($conn, $queryLoai);
       </div>
 
       <div class="collapse navbar-collapse" id="navbar-collapse">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Tìm kiếm sách...">
-          </div>
-          <button type="submit" class="btn btn-default">Tìm</button>
-        </form>
+        <form class="navbar-form navbar-left" action="timkiem.php" method="get" role="search">
+    <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Tìm kiếm sách..." required>
+    </div>
+    <button type="submit" class="btn btn-default">Tìm</button>
+</form>
+
 
         <ul class="nav navbar-nav">
           <li class="dropdown">
@@ -55,7 +59,7 @@ $resultLoai = mysqli_query($conn, $queryLoai);
         </ul>
 
     <ul class="nav navbar-nav navbar-right">
-  <li><a href="giohang.html">Giỏ hàng</a></li>
+  <li><a href="giohang.php">Giỏ hàng</a></li>
   <?php if (isset($_SESSION['MaKH'])): ?>
     <li><a href="hosonguoidung.php">Xin chào, <?php echo htmlspecialchars($_SESSION['HoTen']); ?></a></li>
     <li><a href="logout.php">Đăng xuất</a></li>

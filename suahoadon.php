@@ -31,11 +31,7 @@ $hoadon = $result->fetch_assoc();
                                value="<?= date('Y-m-d\TH:i:s', strtotime($hoadon['NgayLap'])) ?>" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="Email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="Email" name="Email"
-                               value="<?= $hoadon['Email'] ?>">
-                    </div>
+                    
 
                     <div class="mb-3">
                         <label for="HoTenNguoiNhan" class="form-label">Họ Tên Người Nhận</label>
